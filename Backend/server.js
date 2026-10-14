@@ -11,8 +11,7 @@ const callSocket =require("./src/socket/call.socket");
 connectToDB();
 
 
-const server =
-    http.createServer(app);
+const server = http.createServer(app);
 
 
 const allowedOrigins = [
