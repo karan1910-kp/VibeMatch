@@ -10,8 +10,15 @@ const app = express();
 
 
 
+// Allowed frontend origins
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.CLIENT_URL
+].filter(Boolean);
+
+// Express CORS configuration
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true
 }));
 
@@ -27,6 +34,10 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/messages", messageRouter);
+app.get("/", (req, res) => {
+    res.status(200).send("VibeMatch Backend is Running!");
+});
+
 
 
 module.exports = app;

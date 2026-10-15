@@ -11,17 +11,19 @@ const callSocket =require("./src/socket/call.socket");
 connectToDB();
 
 
-const server =
-    http.createServer(app);
+const server = http.createServer(app);
 
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.CLIENT_URL
+].filter(Boolean);
 
 const io = new Server(server, {
-
     cors: {
-        origin: "http://localhost:5173",
+        origin: allowedOrigins,
         credentials: true
     }
-
 });
 
 
@@ -33,4 +35,6 @@ chatSocket(io);
 callSocket(io);
 
 
-server.listen(3000, () => {});
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, "0.0.0.0", () => {});
