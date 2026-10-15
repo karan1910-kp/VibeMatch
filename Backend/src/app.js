@@ -32,6 +32,9 @@ app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/messages", messageRouter);
+app.get("/", (req, res) => {
+    res.status(200).send("VibeMatch Backend is Running!");
+});
 
 
 
