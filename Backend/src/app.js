@@ -8,7 +8,9 @@ const messageRouter = require("./routes/message.route");
 
 const app = express();
 
-
+app.get("/", (req, res) => {
+    res.status(200).send("VibeMatch Backend is Running!");
+});
 
 // Allowed frontend origins
 const allowedOrigins = [
